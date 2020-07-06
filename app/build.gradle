@@ -24,8 +24,8 @@ android {
     flavorDimensions "default"
     productFlavors {
         sandbox {
-            buildConfigField "String", "BASE_URL", "\"https://merchant-url-sandbox.com/\""
-            buildConfigField "String", "CLIENT_KEY_MID", "\"VT-CLIENT-sandbox-client-key\""
+            buildConfigField "String", "BASE_URL", "\"SERVER_MERCHAN_KALIAN\""
+            buildConfigField "String", "CLIENT_KEY_MID", "\"Client_Key_KALIAN\""
         }
     }
 }
@@ -39,7 +39,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'com.midtrans:uikit:1.23.1-SANDBOX'
-    sandboxImplementation 'com.midtrans:uikit:1.23.1-SANDBOX'
+    implementation 'com.midtrans:uikit:1.21.2-SANDBOX'
 
 }

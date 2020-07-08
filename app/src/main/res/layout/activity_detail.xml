@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tv_title_detail"
+    android:id="@+id/layout_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".DetailActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/img_detail_product"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,43 +19,45 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_titlle_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="47dp"
         android:text="TextView"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintStart_toStartOf="@+id/img_detail_product"
+        app:layout_constraintTop_toBottomOf="@+id/img_detail_product" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_price_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="38dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_titlle_detail"
+        app:layout_constraintStart_toStartOf="@+id/tv_titlle_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titlle_detail" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_desc_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/button_pay_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price_detail"
         tools:layout_editor_absoluteX="57dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_pay_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:elevation="24dp"
+        android:text="Buy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_detail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

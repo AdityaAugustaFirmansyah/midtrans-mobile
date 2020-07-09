@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback
 import com.midtrans.sdk.corekit.core.MidtransSDK
@@ -28,12 +29,11 @@ class DetailActivity : AppCompatActivity(), TransactionFinishedCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        initSdk()
         modelShop = intent.getSerializableExtra(TAG_DATA_DETAIL_SHOP) as ModelShop
         bindData()
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint("CheckResult", "ResourceAsColor")
     private fun bindData(){
         val kursRp: DecimalFormat = DecimalFormat.getCurrencyInstance() as DecimalFormat
         val formatRp = DecimalFormatSymbols()
@@ -51,9 +51,16 @@ class DetailActivity : AppCompatActivity(), TransactionFinishedCallback {
 
         button_pay_detail.setOnClickListener {
             dialog.show {
-                input (inputType = InputType.TYPE_CLASS_NUMBER){ _, charSequence ->
-//                    MidtransSDK.getInstance().transactionRequest = initTransactionRequest(modelShop.price.toDouble(),charSequence.toString(),modelShop.name)
-//                    MidtransSDK.getInstance().startPaymentUiFlow(this@DetailActivity)
+                dialog.title(text = "Masukan Jumlahnya")
+                input (inputType = InputType.TYPE_CLASS_NUMBER)
+                positiveButton {
+                    initSdk()
+                    val totPrice = modelShop.price*dialog.getInputField().text.toString().toInt()
+                    MidtransSDK.getInstance().transactionRequest = initTransactionRequest(totPrice.toDouble(),dialog.getInputField().text.toString(),modelShop.name)
+                    MidtransSDK.getInstance().startPaymentUiFlow(this@DetailActivity)
+                }
+                negativeButton {
+                    dialog.dismiss()
                 }
             }
         }
@@ -61,10 +68,10 @@ class DetailActivity : AppCompatActivity(), TransactionFinishedCallback {
 
     private fun initSdk(){
         SdkUIFlowBuilder.init()
-
+            .setClientKey(BuildConfig.CLIENT_KEY_MID)
             .setContext(this)
             .setTransactionFinishedCallback(this)
-
+            .setMerchantBaseUrl(BuildConfig.BASE_URL)
             .enableLog(true)
             .setColorTheme(CustomColorTheme("#FFE51255","#B61548","#FFE51255"))
             .buildSDK()

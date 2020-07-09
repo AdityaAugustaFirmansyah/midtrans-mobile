@@ -24,8 +24,8 @@ android {
     flavorDimensions "default"
     productFlavors {
         sandbox {
-            buildConfigField "String", "BASE_URL", "\"SERVER_MERCHAN_KALIAN\""
-            buildConfigField "String", "CLIENT_KEY_MID", "\"Client_Key_KALIAN\""
+            buildConfigField "String", "BASE_URL", "\"BASE_URL\""
+            buildConfigField "String", "CLIENT_KEY_MID", "\"CLIENT_KEY\""
         }
     }
 }

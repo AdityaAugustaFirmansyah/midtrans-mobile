@@ -3,6 +3,7 @@ package com.aditya.paymentgateway
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.InputType
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.getInputField
@@ -55,8 +56,7 @@ class DetailActivity : AppCompatActivity(), TransactionFinishedCallback {
                 input (inputType = InputType.TYPE_CLASS_NUMBER)
                 positiveButton {
                     initSdk()
-                    val totPrice = modelShop.price*dialog.getInputField().text.toString().toInt()
-                    MidtransSDK.getInstance().transactionRequest = initTransactionRequest(totPrice.toDouble(),dialog.getInputField().text.toString(),modelShop.name)
+                    MidtransSDK.getInstance().transactionRequest = initTransactionRequest(modelShop.price.toDouble(),dialog.getInputField().text.toString(),modelShop.name)
                     MidtransSDK.getInstance().startPaymentUiFlow(this@DetailActivity)
                 }
                 negativeButton {
@@ -98,7 +98,28 @@ class DetailActivity : AppCompatActivity(), TransactionFinishedCallback {
         const val TAG_DATA_DETAIL_SHOP = "TAG_DATA_DETAIL_SHOP"
     }
 
-    override fun onTransactionFinished(p0: TransactionResult?) {
-        TODO("Not yet implemented")
+    override fun onTransactionFinished(p0: TransactionResult) {
+        when(p0.status){
+            TransactionResult.STATUS_SUCCESS->{
+                Toast.makeText(this,"Success",Toast.LENGTH_SHORT).show()
+            }
+
+            TransactionResult.STATUS_FAILED->{
+                Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
+            }
+
+            TransactionResult.STATUS_PENDING->{
+                Toast.makeText(this,"Pending",Toast.LENGTH_SHORT).show()
+            }
+        }
+        if (p0.isTransactionCanceled){
+            Toast.makeText(this,"Cancel",Toast.LENGTH_SHORT).show()
+        }else{
+            if (p0.status == TransactionResult.STATUS_INVALID){
+                Toast.makeText(this,"Invalid",Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this,"Transaction Finished With Failure",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

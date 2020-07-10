@@ -24,8 +24,8 @@ android {
     flavorDimensions "default"
     productFlavors {
         sandbox {
-            buildConfigField "String", "BASE_URL", "\"BASE_URL\""
-            buildConfigField "String", "CLIENT_KEY_MID", "\"CLIENT_KEY\""
+            buildConfigField "String", "BASE_URL", "\"https://de3e914837ce.ngrok.io/coba/\""
+            buildConfigField "String", "CLIENT_KEY_MID", "\"SB-Mid-client-uCsCkYfd8pcEWzDD\""
         }
     }
 }

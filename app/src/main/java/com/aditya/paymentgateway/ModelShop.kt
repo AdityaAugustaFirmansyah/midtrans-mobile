@@ -1,5 +1,6 @@
 package com.aditya.paymentgateway
 
+import com.midtrans.sdk.corekit.models.CustomerDetails
 import java.io.Serializable
 
 data class ModelShop(

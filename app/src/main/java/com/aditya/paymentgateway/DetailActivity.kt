@@ -1,6 +1,5 @@
 package com.aditya.paymentgateway
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.InputType
 import android.widget.Toast
@@ -34,7 +33,6 @@ class DetailActivity : AppCompatActivity(), TransactionFinishedCallback {
         bindData()
     }
 
-    @SuppressLint("CheckResult", "ResourceAsColor")
     private fun bindData(){
         val kursRp: DecimalFormat = DecimalFormat.getCurrencyInstance() as DecimalFormat
         val formatRp = DecimalFormatSymbols()
@@ -65,7 +63,6 @@ class DetailActivity : AppCompatActivity(), TransactionFinishedCallback {
             }
         }
     }
-
     private fun initSdk(){
         SdkUIFlowBuilder.init()
             .setClientKey(BuildConfig.CLIENT_KEY_MID)
